@@ -105,6 +105,33 @@ python tools/validate_data.py .
 
 이 검증은 매 푸시·PR마다 GitHub Actions에서 자동 실행되며, 상단의 `validate` 배지가 최신 실행 결과를 나타냅니다.
 
+## 데이터 재현
+
+`data/`의 CSV는 큐레이션된 대표 스냅샷이며, 동일한 스키마와 정합성 규칙을 만족하는 데이터셋을 코드로 다시 만들 수 있습니다.
+
+```bash
+# 동일 seed에서 결정론적으로 재현되는 데이터셋 생성 → build/data 에 기록 후 검증
+python tools/generate_qc_dataset.py --seed 20250312 --out build/data
+python tools/validate_data.py build
+
+# 차트 재생성(matplotlib 필요) → build/charts
+pip install -r requirements.txt
+python tools/make_charts.py --data data --out build/charts
+```
+
+`Makefile`로도 동일하게 실행할 수 있습니다.
+
+```bash
+make validate    # 커밋된 데이터 정합성 검증
+make generate    # 합성 데이터 재생성 후 검증
+make charts      # 차트 재생성
+```
+
+- `generate_qc_dataset.py`는 **표준 라이브러리만** 사용하며, 같은 `--seed`에서는 항상 동일한 결과를 만듭니다.
+- 드롭 사유 6분류는 총 드롭 수에서 고정 비율로 분해되고, 배치 합계는 항상 일일 요약과 일치하도록 생성됩니다(→ `validate_data.py` 통과).
+- 생성기는 커밋된 `data/`를 **덮어쓰지 않으며**, 기본적으로 `build/`(gitignore) 아래에 기록합니다. `--out data`로 지정하면 제자리 재생성도 가능합니다.
+- 생성기가 만드는 값은 커밋된 스냅샷과 숫자까지 동일하진 않습니다(설계 의도). 재현되는 것은 **데이터 구조와 정합성**이며, 대표 스냅샷은 `data/`로 고정합니다.
+
 ## 리포트 및 산출물
 
 분석 결과를 공유용 문서로도 제공합니다.
@@ -118,6 +145,8 @@ python tools/validate_data.py .
 synthetic-image-qc-portfolio/
 ├── README.md
 ├── LICENSE
+├── Makefile
+├── requirements.txt
 ├── data/
 │   ├── drop_codebook.csv
 │   ├── qc_action_log.csv
@@ -129,7 +158,9 @@ synthetic-image-qc-portfolio/
 │   ├── drop_reason_distribution.png
 │   └── worker_drop_rate.png
 ├── tools/
-│   └── validate_data.py
+│   ├── validate_data.py
+│   ├── generate_qc_dataset.py
+│   └── make_charts.py
 └── reports/
     ├── qc_analysis.xlsx
     └── qc_summary_report.pdf

@@ -1,0 +1,5 @@
+# The validator (tools/validate_data.py) and the dataset generator
+# (tools/generate_qc_dataset.py) use only the Python standard library.
+#
+# matplotlib is required only to regenerate the charts (tools/make_charts.py).
+matplotlib>=3.7

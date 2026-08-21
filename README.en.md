@@ -105,6 +105,33 @@ Checks performed:
 
 These checks run automatically on every push and pull request via GitHub Actions; the `validate` badge at the top reflects the latest run.
 
+## Reproducing the Data
+
+The CSVs under `data/` are a curated snapshot. An equivalent dataset — same schema, same reconciliation identities — can be regenerated from code.
+
+```bash
+# Generate a dataset that is deterministic for a given seed -> writes to build/data, then validate
+python tools/generate_qc_dataset.py --seed 20250312 --out build/data
+python tools/validate_data.py build
+
+# Regenerate the charts (requires matplotlib) -> build/charts
+pip install -r requirements.txt
+python tools/make_charts.py --data data --out build/charts
+```
+
+The same steps are available through the `Makefile`.
+
+```bash
+make validate    # reconciliation checks on the committed data
+make generate    # regenerate the synthetic dataset and validate it
+make charts      # regenerate the charts
+```
+
+- `generate_qc_dataset.py` uses the **standard library only** and always produces the same output for the same `--seed`.
+- The six drop-reason columns are split from the daily drop count by fixed shares, and batch totals always reconcile to the daily summary (so `validate_data.py` passes).
+- The generator does **not** overwrite the committed `data/`; by default it writes under `build/` (gitignored). Pass `--out data` to regenerate in place.
+- Generated values are not numerically identical to the committed snapshot (by design). What is reproduced is the **structure and internal consistency**; `data/` remains the canonical snapshot.
+
 ## Reports and Deliverables
 
 The analysis is also provided as shareable documents.
@@ -118,6 +145,8 @@ The analysis is also provided as shareable documents.
 synthetic-image-qc-portfolio/
 ├── README.md
 ├── LICENSE
+├── Makefile
+├── requirements.txt
 ├── data/
 │   ├── drop_codebook.csv
 │   ├── qc_action_log.csv
@@ -129,7 +158,9 @@ synthetic-image-qc-portfolio/
 │   ├── drop_reason_distribution.png
 │   └── worker_drop_rate.png
 ├── tools/
-│   └── validate_data.py
+│   ├── validate_data.py
+│   ├── generate_qc_dataset.py
+│   └── make_charts.py
 └── reports/
     ├── qc_analysis.xlsx
     └── qc_summary_report.pdf
