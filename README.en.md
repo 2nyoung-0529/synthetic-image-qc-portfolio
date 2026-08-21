@@ -1,5 +1,7 @@
 # Synthetic Image QC Log Portfolio
 
+> A data-QC portfolio that reproduces a large-scale image-review QC log as **synthetic data**, with a validation script and **CI that auto-checks aggregation consistency**
+
 [![validate](https://github.com/2nyoung-0529/synthetic-image-qc-portfolio/actions/workflows/validate.yml/badge.svg)](https://github.com/2nyoung-0529/synthetic-image-qc-portfolio/actions/workflows/validate.yml)
 
 [한국어](README.md) | **English**

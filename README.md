@@ -1,5 +1,7 @@
 # Synthetic Image QC Log Portfolio
 
+> 대량 이미지 검수 QC 로그를 **합성 데이터**로 재현하고, 검증 스크립트와 **CI로 집계 정합성을 자동 점검**하는 데이터 QC 포트폴리오
+
 [![validate](https://github.com/2nyoung-0529/synthetic-image-qc-portfolio/actions/workflows/validate.yml/badge.svg)](https://github.com/2nyoung-0529/synthetic-image-qc-portfolio/actions/workflows/validate.yml)
 
 **한국어** | [English](README.en.md)
