@@ -45,6 +45,20 @@ drop_rate = dropped_images / reviewed_images
 
 48개 배치의 처리 이벤트 예시입니다. `main_drop_code`는 배치의 대표 드롭 사유이며, 승인과 드롭 이미지가 함께 존재하는 배치는 `PARTIAL_PASS`로 표현합니다. `workflow_status`는 배치 전체의 품질 판정이 아니라 후속 처리 단계입니다.
 
+#### QC 로그 샘플 (앞 5개 배치)
+
+가독성을 위해 전체 17개 컬럼 중 핵심 컬럼만 표시했습니다. 아래 값은 원본 CSV의 앞 5개 행과 동일합니다.
+
+| event_ts | worker_id | batch_id | environment_condition | batch_reviewed | batch_accepted | batch_dropped | main_drop_code |
+|---|---|---|---|---:|---:|---:|---|
+| 2025-03-12 09:43:00 | QC001 | 20250312_01_B1 | rain_wetroad | 2,296 | 1,427 | 869 | LOW_VISIBILITY |
+| 2025-03-12 11:50:00 | QC001 | 20250312_01_B2 | day_clear | 2,296 | 1,355 | 941 | LOW_VISIBILITY |
+| 2025-03-12 13:04:00 | QC001 | 20250312_01_B3 | day_clear | 2,296 | 1,391 | 905 | LOW_VISIBILITY |
+| 2025-03-12 15:44:00 | QC001 | 20250312_01_B4 | night_lowlight | 2,296 | 1,391 | 905 | IMAGE_CONTENT_AMBIGUITY |
+| 2025-03-12 09:03:00 | QC002 | 20250312_02_B1 | mixed_indoor_outdoor | 1,882 | 1,117 | 765 | DUPLICATE_CORRUPT |
+
+[전체 QC 처리 로그 보기](data/qc_action_log.csv)
+
 ### `data/drop_codebook.csv`
 
 로그 코드와 의미를 정의합니다. 모든 `main_drop_code`는 코드북에 존재하도록 검증합니다.
