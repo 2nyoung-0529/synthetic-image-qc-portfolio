@@ -57,6 +57,8 @@ drop_rate = dropped_images / reviewed_images
 | 2025-03-12 15:44:00 | QC001 | 20250312_01_B4 | night_lowlight | 2,296 | 1,391 | 905 | IMAGE_CONTENT_AMBIGUITY |
 | 2025-03-12 09:03:00 | QC002 | 20250312_02_B1 | mixed_indoor_outdoor | 1,882 | 1,117 | 765 | DUPLICATE_CORRUPT |
 
+> `environment_condition`은 배치의 촬영 조건이고 `main_drop_code`는 배치의 대표 드롭 사유로, 둘은 직접적인 인과관계가 아닙니다. 예를 들어 `day_clear` 배치라도 대표 사유가 `LOW_VISIBILITY`일 수 있는데, 이는 해당 배치에서 저시야 드롭이 가장 많았다는 의미이지 촬영 조건이 저시야였다는 뜻이 아닙니다.
+
 [전체 QC 처리 로그 보기](data/qc_action_log.csv)
 
 ### `data/drop_codebook.csv`
@@ -86,7 +88,7 @@ python tools/validate_data.py .
 ## 폴더 구조
 
 ```text
-qc-log-portfolio/
+synthetic-image-qc-portfolio/
 ├── README.md
 ├── LICENSE
 ├── data/
