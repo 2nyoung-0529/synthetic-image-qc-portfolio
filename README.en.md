@@ -1,5 +1,7 @@
 # Synthetic Image QC Log Portfolio
 
+[![validate](https://github.com/2nyoung-0529/synthetic-image-qc-portfolio/actions/workflows/validate.yml/badge.svg)](https://github.com/2nyoung-0529/synthetic-image-qc-portfolio/actions/workflows/validate.yml)
+
 [한국어](README.md) | **English**
 
 A **synthetic-data QC log portfolio** designed around a large-scale image review workflow. It reproduces per-worker and per-day productivity, accept/drop outcomes, drop reasons, and batch-level processing history in a fully reproducible form.
@@ -98,6 +100,15 @@ Checks performed:
 - Per-batch arithmetic consistency of reviewed / accepted / dropped
 - Per-worker, per-day batch totals match the daily summary
 - Every representative drop code exists in the codebook
+
+These checks run automatically on every push and pull request via GitHub Actions; the `validate` badge at the top reflects the latest run.
+
+## Reports and Deliverables
+
+The analysis is also provided as shareable documents.
+
+- [`reports/qc_analysis.xlsx`](reports/qc_analysis.xlsx) — analysis workbook with metrics, pivots, and drop-reason breakdown
+- [`reports/qc_summary_report.pdf`](reports/qc_summary_report.pdf) — one-page summary of the key results
 
 ## Folder Structure
 

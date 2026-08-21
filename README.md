@@ -1,5 +1,7 @@
 # Synthetic Image QC Log Portfolio
 
+[![validate](https://github.com/2nyoung-0529/synthetic-image-qc-portfolio/actions/workflows/validate.yml/badge.svg)](https://github.com/2nyoung-0529/synthetic-image-qc-portfolio/actions/workflows/validate.yml)
+
 **한국어** | [English](README.en.md)
 
 대량 이미지 검수 업무를 가정하여 설계한 **합성 데이터 기반 QC 로그 포트폴리오**입니다. 작업자·일자별 생산성, 승인/드롭 결과, 드롭 사유와 배치 단위 처리 이력을 재현 가능한 형태로 구성했습니다.
@@ -98,6 +100,15 @@ python tools/validate_data.py .
 - 배치 행별 검수·승인·드롭 산술 일치
 - 배치 로그의 작업자·일자별 합계와 일일 요약 일치
 - 모든 대표 드롭 코드의 코드북 존재 여부
+
+이 검증은 매 푸시·PR마다 GitHub Actions에서 자동 실행되며, 상단의 `validate` 배지가 최신 실행 결과를 나타냅니다.
+
+## 리포트 및 산출물
+
+분석 결과를 공유용 문서로도 제공합니다.
+
+- [`reports/qc_analysis.xlsx`](reports/qc_analysis.xlsx) — 지표·피벗·드롭 사유 분해를 담은 분석 워크북
+- [`reports/qc_summary_report.pdf`](reports/qc_summary_report.pdf) — 핵심 결과를 요약한 1페이지 리포트
 
 ## 폴더 구조
 
