@@ -1,0 +1,8 @@
+drop_code,category,definition
+FOLDER_STRUCTURE,folder_structure,"폴더 계층, 파일 배치 또는 산출물 규칙 불일치"
+TEMPORAL_ANNOTATION,temporal_annotation,"객체 시작·종료 시점, 프레임 구간 또는 시계열 연속성 오류"
+DUPLICATE_CORRUPT,duplicate_corrupt,"중복 파일, 손상 파일, 0KB 또는 읽기 오류"
+LOW_VISIBILITY,low_visibility,"블러, 과다 노출, 가림 또는 식별 불가 프레임"
+IMAGE_CONTENT_AMBIGUITY,image_content_ambiguity,클래스 라벨 정확도 등 라벨링 기준 부적합 이미지
+METADATA_MISMATCH,metadata_mismatch,"거리, 환경 또는 클래스 메타데이터와 실제 이미지 불일치"
+OTHER_MANUAL,other_manual,상세 사유가 분리되지 않은 기타 수동 검토 드롭

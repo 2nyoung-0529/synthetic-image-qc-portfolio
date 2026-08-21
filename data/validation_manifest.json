@@ -1,0 +1,13 @@
+{
+  "synthetic_data": true,
+  "source_rows": {
+    "daily": 12,
+    "action": 48
+  },
+  "totals": {
+    "reviewed": 95510,
+    "accepted": 54168,
+    "dropped": 41342
+  },
+  "reason_total": 41342
+}

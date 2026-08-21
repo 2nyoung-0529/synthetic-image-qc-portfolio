@@ -1,0 +1,13 @@
+metric,value,unit,calculation
+total_reviewed_images,95510,images,sum(qc_daily_summary.reviewed_images)
+total_accepted_images,54168,images,sum(qc_daily_summary.accepted_images)
+total_dropped_images,41342,images,sum(qc_daily_summary.dropped_images)
+overall_drop_rate,0.432855,ratio,total_dropped_images / total_reviewed_images
+avg_daily_reviewed_per_worker,7959.17,images,total_reviewed_images / worker-day rows
+weighted_avg_qc_sec,1.7299,seconds,sum(reviewed_images * avg_qc_sec_per_image) / total_reviewed_images
+folder_structure_share_of_drops,0.429829,ratio,sum(folder_structure_drop) / total_dropped_images
+temporal_annotation_share_of_drops,0.309854,ratio,sum(temporal_annotation_drop) / total_dropped_images
+duplicate_corrupt_share_of_drops,0.089836,ratio,sum(duplicate_corrupt_drop) / total_dropped_images
+low_visibility_share_of_drops,0.079822,ratio,sum(low_visibility_drop) / total_dropped_images
+image_content_ambiguity_share_of_drops,0.030792,ratio,sum(image_content_ambiguity_drop) / total_dropped_images
+other_manual_share_of_drops,0.059866,ratio,sum(other_manual_drop) / total_dropped_images
